@@ -11,12 +11,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Build Laravel App
         uses: ./action-build.yaml
 
   test:
     runs-on: ubuntu-latest
     services:
+    - name: Checkout
+      uses: actions/checkout@v4
       mysql:
         image: mysql:5.7
         env:
