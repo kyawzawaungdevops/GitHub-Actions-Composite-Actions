@@ -19,8 +19,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     services:
-    - name: Checkout
-      uses: actions/checkout@v4
       mysql:
         image: mysql:5.7
         env:
@@ -29,6 +27,8 @@ jobs:
         ports:
           - 3306:3306
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Test the Application
         uses: ./action-test.yaml
 
