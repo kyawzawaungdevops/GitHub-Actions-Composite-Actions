@@ -1,12 +1,8 @@
-name: CI Workflow
+name: Reusable Workflow
 
 # trigger
 on:
-  push:
-  pull_request:
-    branches:
-      - main
-      - dev
+      workflow_call:
 
 jobs:
   build:
