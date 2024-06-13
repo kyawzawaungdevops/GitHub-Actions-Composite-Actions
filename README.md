@@ -1,6 +1,7 @@
 # Reusable Laravel CI Workflow
 
-This repository demonstrates a reusable GitHub Actions workflow for building and testing a Laravel application. Below is the YAML configuration for the reusable workflow (`reusable-workflow.yaml`) and how it can be called from another workflow (`caller-workflow.yaml`).
+This repository demonstrates a reusable GitHub Actions workflow for building and testing Laravel application. 
+Below is the YAML configuration for the reusable workflow (`reusable-workflow.yaml`) and how it can be called from another workflow (`caller-workflow.yaml`).
 
 ```yaml
 # Reusable Workflow Definition (reusable-workflow.yaml)
