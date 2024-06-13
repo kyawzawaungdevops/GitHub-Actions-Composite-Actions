@@ -12,7 +12,7 @@ runs:
 
     - name: Install dependencies
       run: composer install
-      shell: bash
+  
 
     - name: Cache the Vendor
       uses: actions/cache@v4.0.2
@@ -24,10 +24,8 @@ runs:
       run: |
         cp .env.ci .env
         cp .env.ci .env.testing
-      shell: bash
+
 
     - name: Generate the key
       run: php artisan key:generate
-      shell: bash
-      env:
-        APP_KEY: $(php artisan key:generate --show)
+
