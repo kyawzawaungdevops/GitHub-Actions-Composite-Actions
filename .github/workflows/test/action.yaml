@@ -25,17 +25,17 @@ runs:
       run: |
         cp .env.ci .env
         cp .env.ci .env.testing
-
+      shell: bash
 
     - name: Generate the key
       run: |
         php artisan key:generate --show > key.txt
-
+      shell: bash
 
     - name: Migrate the Database
       run: php artisan migrate
-
+      shell: bash
 
     - name: Run Unit Testing
       run: php artisan test
-    
+      shell: bash
