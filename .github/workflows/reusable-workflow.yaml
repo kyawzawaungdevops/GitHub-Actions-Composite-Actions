@@ -82,7 +82,8 @@ jobs:
         run: |
           php artisan key:generate --show > key.txt
           APP_KEY=$(cat key.txt)
-          echo "APP_KEY=${APP_KEY}" >> .env
+          sed -i "s|^APP_KEY=.*|APP_KEY=${APP_KEY}|" .env
+
 
 
       - name: Migrate the Database
