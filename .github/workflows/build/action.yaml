@@ -27,7 +27,7 @@ runs:
       shell: bash
 
     - name: Generate the key
-      run: php artisan key generate
+      run: php artisan key:generate
       shell: bash
       env:
         APP_KEY: $(php artisan key:generate --show)
