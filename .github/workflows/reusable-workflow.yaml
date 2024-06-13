@@ -82,6 +82,10 @@ jobs:
         run: |
           php artisan key:generate
 
+        env:
+          APP_KEY: $(php artisan key:generate --show)
+
+
       - name: Migrate the Database
         run: |
           php artisan migrate
