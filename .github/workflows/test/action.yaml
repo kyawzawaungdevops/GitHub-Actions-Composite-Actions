@@ -1,5 +1,4 @@
 name: 'Test the Application'
-description: 'Setup PHP, install dependencies, and test a Laravel application.'
 runs:
   using: 'composite'
   steps:
