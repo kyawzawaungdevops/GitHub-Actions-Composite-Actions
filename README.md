@@ -1,14 +1,11 @@
 # Reusable Laravel CI Workflow
 
-This repository demonstrates a reusable GitHub Actions workflow for building and testing a Laravel application. The reusable workflow is defined in `reusable-workflow.yaml` and can be called from other workflows, such as `caller-workflow.yaml`.
+This repository demonstrates a reusable GitHub Actions workflow for building and testing a Laravel application. Below is the YAML configuration for the reusable workflow (`reusable-workflow.yaml`) and how it can be called from another workflow (`caller-workflow.yaml`).
 
-
-### reusable-workflow.yaml
-
-\```yaml
+```yaml
+# Reusable Workflow Definition (reusable-workflow.yaml)
 name: Reusable Workflow
 
-# Trigger
 on:
   workflow_call:
 
@@ -28,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           composer install
-      
+
       - name: Cache the Vendor
         uses: actions/cache@v4.0.2
         with:
@@ -100,14 +97,7 @@ jobs:
         run: |
           php artisan test
 
-\```
-
-# Caller Workflow
-
-
-### caller-workflow.yaml
-
-```yaml
+# Caller Workflow (caller-workflow.yaml)
 on:
   push:
   pull_request:
@@ -118,4 +108,3 @@ on:
 jobs:
   build-and-test:
     uses: ./.github/workflows/reusable-workflow.yaml
-\```
