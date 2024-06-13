@@ -2,9 +2,6 @@
 
 This repository demonstrates a reusable GitHub Actions workflow for building and testing a Laravel application. The reusable workflow is defined in `reusable-workflow.yaml` and can be called from other workflows, such as `caller-workflow.yaml`.
 
-## Reusable Workflow
-
-The reusable workflow is defined in `reusable-workflow.yaml`. This workflow is designed to build and test a Laravel application.
 
 ### reusable-workflow.yaml
 
@@ -102,3 +99,18 @@ jobs:
       - name: Run Unit Testing
         run: |
           php artisan test
+
+
+### caller-workflow.yaml
+
+```yaml
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build-and-test:
+    uses: ./.github/workflows/reusable-workflow.yaml
