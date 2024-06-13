@@ -80,10 +80,9 @@ jobs:
 
       - name: Generate the key
         run: |
-          php artisan key:generate
-
-        env:
-          APP_KEY: $(php artisan key:generate --show)
+          php artisan key:generate --show > key.txt
+          APP_KEY=$(cat key.txt)
+          echo "APP_KEY=${APP_KEY}" >> .env
 
 
       - name: Migrate the Database
