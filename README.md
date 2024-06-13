@@ -5,7 +5,7 @@ This repository demonstrates a reusable GitHub Actions workflow for building and
 
 ### reusable-workflow.yaml
 
-```yaml
+\```yaml
 name: Reusable Workflow
 
 # Trigger
@@ -100,6 +100,8 @@ jobs:
         run: |
           php artisan test
 
+\```
+
 # Caller Workflow
 
 
@@ -116,3 +118,4 @@ on:
 jobs:
   build-and-test:
     uses: ./.github/workflows/reusable-workflow.yaml
+\```
