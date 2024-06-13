@@ -1,0 +1,33 @@
+name: 'Build Laravel App'
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+
+    - name: Install dependencies
+      run: composer install
+      shell: bash
+
+    - name: Cache the Vendor
+      uses: actions/cache@v4.0.2
+      with:
+        key: ${{ github.sha }}-php-vendor-cache
+        path: ./vendor
+
+    - name: Create .env
+      run: |
+        cp .env.ci .env
+        cp .env.ci .env.testing
+      shell: bash
+
+    - name: Generate the key
+      run: php artisan key generate
+      shell: bash
+      env:
+        APP_KEY: $(php artisan key:generate --show)
