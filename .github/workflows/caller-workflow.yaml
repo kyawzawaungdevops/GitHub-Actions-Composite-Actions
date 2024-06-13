@@ -1,3 +1,4 @@
+name: Main CI Workflow
 on:
   push:
   pull_request:
@@ -7,7 +8,24 @@ on:
 
 
 jobs:
-      build-and-test:
-        uses: ./.github/workflows/reusable-workflow.yaml
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Laravel App
+        uses: ./action-build.yaml
+
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: testdb
+        ports:
+          - 3306:3306
+    steps:
+      - name: Test the Application
+        uses: ./action-test.yaml
 
      
