@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build Laravel App
-        uses: ./build
+        uses: ./.github/workflow/build
 
   test:
     runs-on: ubuntu-latest
@@ -30,6 +30,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Test the Application
-        uses: ./test
+        uses: ./.github/workflow/test
 
      
