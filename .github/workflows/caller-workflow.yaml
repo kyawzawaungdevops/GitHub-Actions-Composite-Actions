@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-      build:
+      build & test:
         uses: ./.github/workflows/reusable-workflow.yaml
 
      

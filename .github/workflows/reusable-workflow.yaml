@@ -35,6 +35,8 @@ jobs:
       - name: Generate the key
         run: |
           php artisan key:generate
+        env:
+          APP_KEY: $(php artisan key:generate --show)
 
   test:
     name: Test the Application
