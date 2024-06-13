@@ -1,0 +1,42 @@
+name: 'Test the Application'
+description: 'Setup PHP, install dependencies, and test a Laravel application.'
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+
+    - name: Restore the Cache
+      uses: actions/cache@v4.0.2
+      with:
+        path: ./vendor
+        key: ${{ github.sha }}-php-vendor-cache
+
+    - name: Composer Install
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: composer install
+      shell: bash
+
+    - name: Create .env
+      run: |
+        cp .env.ci .env
+        cp .env.ci .env.testing
+      shell: bash
+
+    - name: Generate the key
+      run: |
+        php artisan key:generate --show > key.txt
+      shell: bash
+
+    - name: Migrate the Database
+      run: php artisan migrate
+      shell: bash
+
+    - name: Run Unit Testing
+      run: php artisan test
+      shell: bash
